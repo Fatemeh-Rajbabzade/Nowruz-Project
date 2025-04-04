@@ -11,7 +11,7 @@ public class Database {
         entities.add(e);
     }
     //پیدا کردن موجودیت با ایدی مدنظر
-    public static Entity get(int id){
+    public static Entity get(int id) throws EntityNotFoundException {
         for (Entity e : entities){
             if (e.id == id)
                 return e;
