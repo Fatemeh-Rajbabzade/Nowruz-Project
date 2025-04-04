@@ -11,7 +11,7 @@ public class Database {
         entities.add(e);
     }
     //پیدا کردن موجودیت با ایدی مدنظر
-    public static Entity get(int id) throws EntityNotFoundException {
+    public static Entity get(int id) {
         for (Entity e : entities){
             if (e.id == id)
                 return e;
@@ -19,12 +19,12 @@ public class Database {
         throw new EntityNotFoundException(id);
     }
 
-    public static  void delete(int id) throws EntityNotFoundException{
+    public static  void delete(int id) {
         Entity entity = get(id);
         entities.remove(entity);
     }
 
-    public static void update(Entity e) throws EntityNotFoundException{
+    public static void update(Entity e) {
         Entity entity = get(e.id);
         entities.remove(entity);
         entities.add(e);
