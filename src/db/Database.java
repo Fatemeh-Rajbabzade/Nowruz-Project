@@ -19,12 +19,12 @@ public class Database {
         throw new EntityNotFoundException(id);
     }
 
-    public static  void delete(int id){
+    public static  void delete(int id) throws EntityNotFoundException{
         Entity entity = get(id);
         entities.remove(entity);
     }
 
-    public static void update(Entity e){
+    public static void update(Entity e) throws EntityNotFoundException{
         Entity entity = get(e.id);
         entities.remove(entity);
         entities.add(e);
