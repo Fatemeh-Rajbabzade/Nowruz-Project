@@ -8,13 +8,13 @@ public class Database {
     private static int currentId = 1;
     public static void add(Entity e){
         e.id = currentId++;
-        entities.add(e);
+        entities.add(e.copy());
     }
     //پیدا کردن موجودیت با ایدی مدنظر
     public static Entity get(int id) {
         for (Entity e : entities){
             if (e.id == id)
-                return e;
+                return e.copy();
         }
         throw new EntityNotFoundException(id);
     }
@@ -27,7 +27,7 @@ public class Database {
     public static void update(Entity e) {
         Entity entity = get(e.id);
         entities.remove(entity);
-        entities.add(e);
+        entities.add(e.copy());
 
     }
 }
