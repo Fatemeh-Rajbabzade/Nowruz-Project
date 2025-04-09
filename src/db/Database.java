@@ -22,8 +22,12 @@ public class Database {
     }
 
     private static boolean validEntity(Entity e){
-        if (e.id <= 0)
+        if (e.id <= 0) {
             return false;
+        }
+        else{
+            return true;
+        }
     }
 
     public static void add(Entity e) throws InvalidEntityException{
