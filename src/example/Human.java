@@ -2,7 +2,7 @@ package example;
 public class Human extends db.Entity {
     public String name;
     public int age;
-
+    public static final int codeOfHumanEntity = 14;
     public Human(String name , int age) {
         this.name = name;
         this.age = age;
@@ -14,4 +14,8 @@ public class Human extends db.Entity {
 
         return copyHuman;
     }
+
+    @Override
+    public int getEntityCode()
+        return codeOfHumanEntity;
 }
