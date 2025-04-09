@@ -14,7 +14,7 @@ public class Database {
     public static void registerValidator(int entityCode, Validator validator) {
         if (validators.containsKey(entityCode))
             throw new IllegalArgumentException("Validator with this entityCode exists.");
-    validator.put(entityCode, validator);
+    validators.put(entityCode, validator);
     }
 
     public static void setValidator(Validator validator){
