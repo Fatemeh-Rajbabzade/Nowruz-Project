@@ -16,6 +16,6 @@ public class Human extends db.Entity {
     }
 
     @Override
-    public int getEntityCode()
+    public int getEntityCode();
         return HUMAN_ENTITY_CODE;
 }
