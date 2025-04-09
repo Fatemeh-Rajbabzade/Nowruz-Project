@@ -31,8 +31,8 @@ public class Database {
     }
 
     public static void add(Entity e) throws InvalidEntityException{
-        if (e == null || !validEntity(e)) {
-            throw new InvalidEntityException("Your Entity is invalid!");
+        if (e == null) {
+            throw new InvalidEntityException("Your Entity cannot be null.");
         }
 
         Validator validator = validators.get(e.getEntityCode());
