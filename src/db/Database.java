@@ -1,12 +1,21 @@
 package db;
 import java.util.ArrayList;
 import db.exception.EntityNotFoundException;
+import db.exception.InvalidEntityException;
 
 public class Database {
     //  لیست موجودیت ها به نام entities
     private static ArrayList<Entity> entities = new ArrayList<>();
     private static int currentId = 1;
-    public static void add(Entity e){
+
+    private static boolean validEntity(Entity e){
+        if (e.id <= 0)
+            return false;
+    }
+
+    public static void add(Entity e) throws InvalidEntityException{
+        if (e == null || !validEntity(e))
+            throw new InvalidEntityException("Your Entity is invalid!");
         e.id = currentId++;
         entities.add(e.copy());
     }
@@ -24,7 +33,9 @@ public class Database {
         entities.remove(entity);
     }
 
-    public static void update(Entity e) {
+    public static void update(Entity e) throws InvalidEntityException {
+        if (e == null || !validEntity(e))
+            throw new InvalidEntityException("Your Entity is invalid!");
         Entity entity = get(e.id);
         entities.remove(entity);
         entities.add(e.copy());
