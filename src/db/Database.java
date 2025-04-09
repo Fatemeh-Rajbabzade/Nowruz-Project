@@ -36,7 +36,7 @@ public class Database {
             validator.validate(e);
 
         else
-            throw new IllegalArgumentException("validator whith this entity code " + e.getEntityCode() + " not found.")
+            throw new IllegalArgumentException("validator whith this entity code " + e.getEntityCode() + " not found.");
         e.id = currentId++;
         entities.add(e.copy());
     }
