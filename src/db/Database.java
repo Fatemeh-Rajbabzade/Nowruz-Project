@@ -7,6 +7,11 @@ public class Database {
     //  لیست موجودیت ها به نام entities
     private static ArrayList<Entity> entities = new ArrayList<>();
     private static int currentId = 1;
+    private static Validator validator;
+
+    public static void setValidator(Validator validator){
+        Database.validator = validator;
+    }
 
     private static boolean validEntity(Entity e){
         if (e.id <= 0)
@@ -14,8 +19,12 @@ public class Database {
     }
 
     public static void add(Entity e) throws InvalidEntityException{
-        if (e == null || !validEntity(e))
+        if (e == null || !validEntity(e)) {
             throw new InvalidEntityException("Your Entity is invalid!");
+        }
+        if (validator != null)
+            validator.validate(e);
+
         e.id = currentId++;
         entities.add(e.copy());
     }
@@ -36,6 +45,9 @@ public class Database {
     public static void update(Entity e) throws InvalidEntityException {
         if (e == null || !validEntity(e))
             throw new InvalidEntityException("Your Entity is invalid!");
+        if (validator != null)
+            validator.validate(e);
+        
         Entity entity = get(e.id);
         entities.remove(entity);
         entities.add(e.copy());
