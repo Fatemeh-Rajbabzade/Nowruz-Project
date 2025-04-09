@@ -47,7 +47,7 @@ public class Database {
             throw new InvalidEntityException("Your Entity is invalid!");
         if (validator != null)
             validator.validate(e);
-        
+
         Entity entity = get(e.id);
         entities.remove(entity);
         entities.add(e.copy());
