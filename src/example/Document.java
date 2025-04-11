@@ -4,59 +4,55 @@ import db.Entity;
 import db.Trackable;
 import java.util.Date;
 
-public class Document extends Entity implements Trackable{
+public class Document extends Entity implements Trackable {
     public String content;
     private Date creationDate;
-    private Date LastModificationDate;
+    private Date lastModificationDate;
 
-    public Document(String content){
+    public Document(String content) {
         this.content = content;
-        //زمان اولین ایجاد
-        this.creationDate = new Date();
-        // زمان ایچاد و اخرین ایجاد
-        this.LastModificationDate = this.creationDate;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
-    public void setCreationDate(Date date){
-        this.creationDate = date;
-    }
-
-    @Override
-    public Date getCreationDate(){
-        return this.creationDate;
-    }
-
-    @Override
-    public void setLastModificationDate(Date date){
-        this.LastModificationDate = date;
-    }
-
-    @Override
-    public Date getLastModificationDate(){
-        return this.LastModificationDate;
-    }
-
-    //متد های کلاس Entity
-    @Override
-    public Entity copy(){
+    public Entity copy() {
         Document copy = new Document(this.content);
+        copy.id = this.id;
         copy.setCreationDate(this.creationDate);
-        copy.setLastModificationDate(this.LastModificationDate);
+        copy.setLastModificationDate(this.lastModificationDate);
         return copy;
     }
 
     @Override
-    public int getEntityCode(){
-        //برای وجود 1 را برگردانذ
-        return 1;
+    public int getEntityCode() {
+        // عدد 2 را برای Document  در نظر بگیریم و ولیدیتور نداریم
+        return 2;
     }
-    // content
-    public String getContent(){
-        return content;
+
+    @Override
+    public void setCreationDate(Date date) {
+        this.creationDate = date;
     }
-    public void setContent(String content){
-        this.content = content;
-        this.LastModificationDate = new Date();
+
+    @Override
+    public Date getCreationDate() {
+        return this.creationDate;
+    }
+
+    @Override
+    public void setLastModificationDate(Date date) {
+        this.lastModificationDate = date;
+    }
+
+    @Override
+    public Date getLastModificationDate() {
+        return this.lastModificationDate;
     }
 }
