@@ -25,8 +25,9 @@ public class Document extends Entity implements Trackable {
     public Entity copy() {
         Document copy = new Document(this.content);
         copy.id = this.id;
-        copy.setCreationDate(this.creationDate);
-        copy.setLastModificationDate(this.lastModificationDate);
+        // Deep copy
+        copy.setCreationDate(new Date(this.creationDate.getTime()));
+        copy.setLastModificationDate(new Date(this.lastModificationDate.getTime()));
         return copy;
     }
 
@@ -43,7 +44,7 @@ public class Document extends Entity implements Trackable {
 
     @Override
     public Date getCreationDate() {
-        return this.creationDate;
+        return new Date(this.creationDate.getTime());
     }
 
     @Override
@@ -53,6 +54,6 @@ public class Document extends Entity implements Trackable {
 
     @Override
     public Date getLastModificationDate() {
-        return this.lastModificationDate;
+        return new Date(this.lastModificationDate.getTime());
     }
 }
